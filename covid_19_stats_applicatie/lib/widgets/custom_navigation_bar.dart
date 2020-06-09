@@ -10,7 +10,7 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
       color: Colors.blue,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[50],
       buttonBackgroundColor: Colors.blue,
       height: 55,
       items: <Widget>[
