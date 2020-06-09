@@ -17,7 +17,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Text("Hallo"),
+                ListTile(
+                  leading: Icon(Icons.),
+                ),
               ],
             ),
           ),
