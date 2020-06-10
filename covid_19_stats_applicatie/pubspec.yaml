@@ -23,6 +23,7 @@ environment:
 dependencies:
   curved_navigation_bar: ^0.3.2
   flutter_country_picker: ^0.1.6
+  http: ^0.12.1
   flutter:
     sdk: flutter
 

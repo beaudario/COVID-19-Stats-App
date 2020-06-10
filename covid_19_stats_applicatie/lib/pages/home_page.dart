@@ -11,6 +11,10 @@ class _HomePageState extends State<HomePage> {
   Country _selected;
   String countryName;
 
+  class ApiService {
+    final
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,17 +40,17 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.all(8),
                         child: CountryPicker(
                           showFlag: false,
-                          showDialingCode: false,
                           nameTextStyle: TextStyle(
                             fontSize: 20,
                           ),
                           onChanged: (Country country) {
                             setState(() {
                               _selected = country;
-                              countryName = _selected.name.toString();
+                              countryName = _selected.name.toString().toLowerCase();
                               //delete
-                              print(_selected.name.toString());
+                              print(countryName);
                             });
+                            return countryName;
                           },
                           selectedCountry: _selected,
                         ),
@@ -75,9 +79,7 @@ class _HomePageState extends State<HomePage> {
                           '1000',
                           style: TextStyle(fontSize: 25),
                         ),
-                        subtitle: Text(
-                            'Bevestigd'
-                        ),
+                        subtitle: Text('Bevestigd'),
                       ),
                       ListTile(
                         leading: Icon(
