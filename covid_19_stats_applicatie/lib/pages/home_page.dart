@@ -1,6 +1,8 @@
 import 'package:covid_19_stats_applicatie/widgets/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,10 +11,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Country _selected;
-  String countryName;
+  String countryCode;
 
-  class ApiService {
-    final
+  String url = "https://corona-api.com/countries/NL";
+
+  Future<String> httpRequest() async {
+    var res = await http.get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
+    print(res.body);
+
+    return res.body;
   }
 
   @override
@@ -31,8 +38,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Card(
                 elevation: 7,
-                child: Padding(
-                  padding: EdgeInsets.all(8),
+                child: Padding(                  padding: EdgeInsets.all(8),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -46,15 +52,28 @@ class _HomePageState extends State<HomePage> {
                           onChanged: (Country country) {
                             setState(() {
                               _selected = country;
-                              countryName = _selected.name.toString().toLowerCase();
+                              countryCode = _selected.isoCode.toString();
                               //delete
-                              print(countryName);
+                              print(countryCode);
                             });
-                            return countryName;
+                            return countryCode;
                           },
                           selectedCountry: _selected,
                         ),
-                      )
+                      ),
+                      MaterialButton(
+                        elevation: 20,
+                        onPressed: httpRequest,
+                        color: Colors.blue,
+                        shape: StadiumBorder(),
+                        child: Text(
+                          "Ga",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
