@@ -19,7 +19,7 @@ class CustomNavigationBar extends StatelessWidget {
         Icon(Icons.favorite, color: Colors.white),
       ],
       animationDuration: Duration(
-          milliseconds: 350
+          milliseconds: 200
       ),
     );
   }

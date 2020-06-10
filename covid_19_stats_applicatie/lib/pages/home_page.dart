@@ -10,54 +10,78 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       backgroundColor: Colors.grey[50],
-      body: Padding(
+      body: Container(
         padding: EdgeInsets.all(16),
-        child: Card(
-          elevation: 5,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(
-                  Icons.blur_circular, //filter_tilt_shift,
-                  color: Colors.orange[400],
-                  size: 40,
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Card(
+                elevation: 7,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
 
-                ),
-                title: Text(
-                  '1000',
-                  style: TextStyle(fontSize: 25),
-                ),
-                subtitle: Text(
-                    'Bevestigd'
+                    ],
+                  ),
                 ),
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.blur_circular, //filter_tilt_shift,
-                  color: Colors.red[400],
-                  size: 40,
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Card(
+                elevation: 7,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(
+                          Icons.blur_circular, //filter_tilt_shift,
+                          color: Colors.orange[400],
+                          size: 40,
+                        ),
+                        title: Text(
+                          '1000',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        subtitle: Text(
+                            'Bevestigd'
+                        ),
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.blur_circular, //filter_tilt_shift,
+                          color: Colors.red[400],
+                          size: 40,
+                        ),
+                        title: Text(
+                          '1000',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        subtitle: Text('Sterfgevallen'),
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.blur_circular, //filter_tilt_shift,
+                          color: Colors.green[400],
+                          size: 40,
+                        ),
+                        title: Text(
+                          '1000',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        subtitle: Text('Hersteld'),
+                      ),
+                    ],
+                  ),
                 ),
-                title: Text(
-                  '1000',
-                  style: TextStyle(fontSize: 25),
-                ),
-                subtitle: Text('Sterfgevallen'),
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.blur_circular, //filter_tilt_shift,
-                  color: Colors.green[400],
-                  size: 40,
-                ),
-                title: Text(
-                  '1000',
-                  style: TextStyle(fontSize: 25),
-                ),
-                subtitle: Text('Hersteld'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: CustomNavigationBar(),
