@@ -1,7 +1,74 @@
 import 'package:covid_19_stats_applicatie/widgets/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_country_picker/flutter_country_picker.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  final List<String> country = [
+    "Albanië",
+    "Andorra",
+    "België",
+    "Bosnië-Herzegovina",
+    "Bulgarije",
+    "Canarische eilanden",
+    "Corsica",
+    "Cyprus",
+    "Denemarken",
+    "Duitsland",
+    "Engeland",
+    "Estland",
+    "Finland",
+    "Frankrijk",
+    "Fuerteventura",
+    "Gibraltar",
+    "Gran Canaria",
+    "Griekenland",
+    "Groenland",
+    "Hongarije",
+    "Ierland",
+    "IJsland",
+    "Italië",
+    "Kreta",
+    "Kroatië",
+    "Letland",
+    "Liechtenstein",
+    "Litouwen",
+    "Luxemburg",
+    "Moldavië",
+    "Montenegro",
+    "Nederland",
+    "Noorwegen",
+    "Oekraïne",
+    "Oostenrijk",
+    "Macedonië",
+    "Mallorca",
+    "Malta",
+    "Moldavië",
+    "Polen",
+    "Portugal",
+    "Roemenië",
+    "Rusland",
+    "Schotland",
+    "San Marino",
+    "Servië",
+    "Slovenië",
+    "Slowakije",
+    "Spanje",
+    "Tenerife",
+    "Tsjechië"
+    "Turkije",
+    "Wales",
+    "Wit-Rusland",
+    "Zweden",
+    "Zwitserland"
+  ];
+  Country _selected;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +90,14 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-
+                      CountryPicker(
+                        onChanged: (Country country) {
+                          setState(() {
+                            _selected = country;
+                          });
+                        },
+                        selectedCountry: _selected,
+                      ),
                     ],
                   ),
                 ),
