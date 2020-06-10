@@ -8,66 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  final List<String> country = [
-    "Albanië",
-    "Andorra",
-    "België",
-    "Bosnië-Herzegovina",
-    "Bulgarije",
-    "Canarische eilanden",
-    "Corsica",
-    "Cyprus",
-    "Denemarken",
-    "Duitsland",
-    "Engeland",
-    "Estland",
-    "Finland",
-    "Frankrijk",
-    "Fuerteventura",
-    "Gibraltar",
-    "Gran Canaria",
-    "Griekenland",
-    "Groenland",
-    "Hongarije",
-    "Ierland",
-    "IJsland",
-    "Italië",
-    "Kreta",
-    "Kroatië",
-    "Letland",
-    "Liechtenstein",
-    "Litouwen",
-    "Luxemburg",
-    "Moldavië",
-    "Montenegro",
-    "Nederland",
-    "Noorwegen",
-    "Oekraïne",
-    "Oostenrijk",
-    "Macedonië",
-    "Mallorca",
-    "Malta",
-    "Moldavië",
-    "Polen",
-    "Portugal",
-    "Roemenië",
-    "Rusland",
-    "Schotland",
-    "San Marino",
-    "Servië",
-    "Slovenië",
-    "Slowakije",
-    "Spanje",
-    "Tenerife",
-    "Tsjechië"
-    "Turkije",
-    "Wales",
-    "Wit-Rusland",
-    "Zweden",
-    "Zwitserland"
-  ];
   Country _selected;
+  String countryName;
 
   @override
   Widget build(BuildContext context) {
@@ -90,14 +32,25 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      CountryPicker(
-                        onChanged: (Country country) {
-                          setState(() {
-                            _selected = country;
-                          });
-                        },
-                        selectedCountry: _selected,
-                      ),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: CountryPicker(
+                          showFlag: false,
+                          showDialingCode: false,
+                          nameTextStyle: TextStyle(
+                            fontSize: 20,
+                          ),
+                          onChanged: (Country country) {
+                            setState(() {
+                              _selected = country;
+                              countryName = _selected.name.toString();
+                              //delete
+                              print(_selected.name.toString());
+                            });
+                          },
+                          selectedCountry: _selected,
+                        ),
+                      )
                     ],
                   ),
                 ),
