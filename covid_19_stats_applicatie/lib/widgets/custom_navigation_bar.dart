@@ -13,6 +13,7 @@ class CustomNavigationBar extends StatelessWidget {
       backgroundColor: Colors.grey[50],
       buttonBackgroundColor: Colors.blue,
       height: 55,
+      index: 1,
       items: <Widget>[
         Icon(Icons.person, color: Colors.white),
         Icon(Icons.home, color: Colors.white),

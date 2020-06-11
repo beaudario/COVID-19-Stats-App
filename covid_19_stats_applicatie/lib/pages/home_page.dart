@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:covid_19_stats_applicatie/widgets/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
@@ -11,15 +13,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Country _selected;
-  String countryCode;
-
-  String url = "https://corona-api.com/countries/NL";
+  String countryCode, countryUrl;
+  String confirmed = '0';
+  String deaths = '0';
+  String recovered = '0';
+  String url = "https://corona-api.com/countries/";
 
   Future<String> httpRequest() async {
-    var res = await http.get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
-    print(res.body);
+    var res = await http.get(countryUrl);
+    var result = json.decode(res.body);
 
-    return res.body;
+    setState(() {
+      confirmed = result['data']['latest_data']['confirmed'].toString();
+      deaths = result['data']['latest_data']['deaths'].toString();
+      recovered = result['data']['latest_data']['recovered'].toString();
+    });
+
+    return result;
   }
 
   @override
@@ -38,7 +48,8 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Card(
                 elevation: 7,
-                child: Padding(                  padding: EdgeInsets.all(8),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -52,26 +63,14 @@ class _HomePageState extends State<HomePage> {
                           onChanged: (Country country) {
                             setState(() {
                               _selected = country;
-                              countryCode = _selected.isoCode.toString();
-                              //delete
-                              print(countryCode);
+                              countryCode = _selected.isoCode;
+                              countryUrl = url + countryCode;
+                              print(countryUrl);
+                              httpRequest();
                             });
-                            return countryCode;
+                            return countryUrl;
                           },
                           selectedCountry: _selected,
-                        ),
-                      ),
-                      MaterialButton(
-                        elevation: 20,
-                        onPressed: httpRequest,
-                        color: Colors.blue,
-                        shape: StadiumBorder(),
-                        child: Text(
-                          "Ga",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15
-                          ),
                         ),
                       ),
                     ],
@@ -95,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                           size: 40,
                         ),
                         title: Text(
-                          '1000',
+                          confirmed,
                           style: TextStyle(fontSize: 25),
                         ),
                         subtitle: Text('Bevestigd'),
@@ -107,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                           size: 40,
                         ),
                         title: Text(
-                          '1000',
+                          deaths,
                           style: TextStyle(fontSize: 25),
                         ),
                         subtitle: Text('Sterfgevallen'),
@@ -119,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                           size: 40,
                         ),
                         title: Text(
-                          '1000',
+                          recovered,
                           style: TextStyle(fontSize: 25),
                         ),
                         subtitle: Text('Hersteld'),
