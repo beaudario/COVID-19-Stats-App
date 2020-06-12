@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(8),
               child: Card(
-                elevation: 7,
+                elevation: 10,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Column(
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(8),
               child: Card(
-                elevation: 7,
+                elevation: 10,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Column(
